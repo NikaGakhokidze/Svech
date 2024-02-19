@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  gap: 100px;
+}
+
+.textContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.title {
+  font-size: 80px;
+}
+
+@media (max-height: 790px) {
+  .title {
+    font-size: 60px;
+  }
+}
+
+.desc {
+  font-size: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  padding: 20px;
+  min-width: 120px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.button:first-child {
+  background-color: var(--btn);
+  color: var(--text);
+}
+
+.brands {
+  position: relative;
+  width: 500px;
+  height: 50px;
+  filter: grayscale(100%);
+}
+
+.imgContainer {
+  position: relative;
+  flex: 1;
+}

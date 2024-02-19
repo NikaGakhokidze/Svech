@@ -1,0 +1,15 @@
+.container {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.text {
+  font-size: 12px;
+}

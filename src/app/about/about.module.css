@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  gap: 100px;
+}
+
+.textContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.subTitle {
+  color: var(--btn);
+}
+
+.title {
+  font-size: 40px;
+}
+
+.desc {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.box h1 {
+  color: var(--btn);
+}
+
+.imgContainer {
+  flex: 1;
+  position: relative;
+}
+
+.img {
+  object-fit: contain;
+}
