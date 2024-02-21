@@ -11,13 +11,7 @@
 }
 
 .title {
-  font-size: 80px;
-}
-
-@media (max-height: 790px) {
-  .title {
-    font-size: 60px;
-  }
+  font-size: 50px;
 }
 
 .desc {
@@ -52,4 +46,32 @@
 .imgContainer {
   position: relative;
   flex: 1;
+}
+
+@media (max-width: 1024) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .buttons {
+    background-color: red;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 790px) {
+  .title {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 35px;
+  }
+
+  .brands {
+    width: 100%;
+  }
 }

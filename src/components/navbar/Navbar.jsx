@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div className={styles["container"]}>
       <Link href="/" className={styles["logo"]}>
-        Svechebi.GE
+        LOGO
       </Link>
       <div>
         <Links />
