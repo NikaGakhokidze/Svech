@@ -54,6 +54,7 @@ const Links = () => {
         height={30}
         onClick={() => setOpen((prevValue) => !prevValue)}
         className={styles["menuButton"]}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
       {open && (
         <div className={styles["mobileLinks"]}>

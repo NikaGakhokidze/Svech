@@ -1,6 +1,11 @@
 import styles from "./about.module.css";
 import Image from "next/image";
 
+export const metadata = {
+  title: "About Page",
+  description: "Svechebi About Page Description",
+};
+
 const AboutPage = () => {
   return (
     <div className={styles["container"]}>
@@ -8,9 +13,10 @@ const AboutPage = () => {
         <h2 className={styles["subTitle"]}>About Agency</h2>
         <h1 className={styles["title"]}>აალების სანთლები</h1>
         <p className={styles["desc"]}>
-          აალების სანთლების პრობლემები განსაკუთრებით თავს იჩენს ცივ ამინდში. პრობლემის პირველი ნიშანია მანქანის დაქოქვის დროს
-          ძრავის ვიბრაცია. ეს მოწყობილობა მნიშვნელოვანი ელემენტია შიდა წვის ძრავის მუშაობაში. მის გარეშე ძნელი წარმოსადგენია
-          სითბოს ძრავა და მათ შორის, ბენზინის ძრავის მუშაობაც.
+          აალების სანთლების პრობლემები განსაკუთრებით თავს იჩენს ცივ ამინდში. პრობლემის პირველი
+          ნიშანია მანქანის დაქოქვის დროს ძრავის ვიბრაცია. ეს მოწყობილობა მნიშვნელოვანი ელემენტია
+          შიდა წვის ძრავის მუშაობაში. მის გარეშე ძნელი წარმოსადგენია სითბოს ძრავა და მათ შორის,
+          ბენზინის ძრავის მუშაობაც.
         </p>
         <div className={styles["boxes"]}>
           <div className={styles["box"]}>
@@ -28,7 +34,13 @@ const AboutPage = () => {
         </div>
       </div>
       <div className={styles["imgContainer"]}>
-        <Image src="/about.png" alt="" className={styles["img"]} fill />
+        <Image
+          src="/about.png"
+          alt=""
+          className={styles["img"]}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
     </div>
   );

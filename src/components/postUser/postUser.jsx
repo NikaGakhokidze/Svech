@@ -1,5 +1,6 @@
 import { getUser } from "@/lib/data";
 import styles from "./postUser.module.css";
+import Image from "next/image";
 
 // FETCH DATA WITH AN API
 // const getUserData = async (userId) => {
@@ -13,12 +14,23 @@ import styles from "./postUser.module.css";
 
 const PostUser = async ({ userId }) => {
   // const user = await getUserData(userId);
-  const user = getUser(userId);
+  console.log(userId);
+  const user = await getUser(userId);
 
   return (
     <div className={styles["container"]}>
-      <span className={styles["title"]}>Author</span>
-      <span className={styles["username"]}>{user.name}</span>
+      <Image
+        className={styles["avatar"]}
+        width={50}
+        height={50}
+        alt=""
+        src={user?.img ? user.img : "/noavatar.png"}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
+      <div className={styles["texts"]}>
+        <span className={styles["title"]}>Author</span>
+        <span className={styles["username"]}>{user.username}</span>
+      </div>
     </div>
   );
 };

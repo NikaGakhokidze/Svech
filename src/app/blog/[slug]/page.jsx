@@ -3,9 +3,20 @@ import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
 import { getPost } from "@/lib/data";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+//FETCH DATA WITH AN API
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
 
-// const getData = async (slug) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
+  return res.json();
+};
+
+// DELETE SINGLE POST WITH AN API
+// const deleteData = async (slug) => {
+//   const res = await fetch(`http://localhost:3000/api/blog/${slug}`, { method: "DELETE" });
 //   if (!res.ok) {
 //     throw new Error("Something went wrong");
 //   }
@@ -13,41 +24,51 @@ import { getPost } from "@/lib/data";
 //   return res.json();
 // };
 
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
-  // const post = await getData(slug);
-  const post = await getPost(slug);
+  const post = await getData(slug);
+  // const post = await getPost(slug);
+  console.log("HEYOO");
   return (
     <div className={styles["container"]}>
-      <div className={styles["imgContainer"]}>
-        <Image
-          className={styles["img"]}
-          fill
-          alt=""
-          src="https://images.pexels.com/photos/19204363/pexels-photo-19204363/free-photo-of-close-up-of-the-front-of-a-vintage-mercedes-car.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        />
-      </div>
+      {post.img && (
+        <div className={styles["imgContainer"]}>
+          <Image
+            className={styles["img"]}
+            fill
+            alt=""
+            src={post.img}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
+      )}
       <div className={styles["textContainer"]}>
         <h1 className={styles["title"]}>{post?.title}</h1>
         <div className={styles["detail"]}>
-          <Image
-            className={styles["avatar"]}
-            width={50}
-            height={50}
-            alt=""
-            src="https://images.pexels.com/photos/19204363/pexels-photo-19204363/free-photo-of-close-up-of-the-front-of-a-vintage-mercedes-car.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          />
           {post && (
-            <Suspense fallback={<div>Loading...</div>}>
-              <PostUser userId={post.userId} />
-            </Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={<div>Loading...</div>}>
+                <PostUser userId={post.userId} />
+              </Suspense>
+            </ErrorBoundary>
           )}
           <div className={styles["detailText"]}>
-            <span className={styles["detailTitle"]}>Author</span>
-            <span className={styles["detailValue"]}>02.22.2024</span>
+            <span className={styles["detailTitle"]}>Published</span>
+            <span className={styles["detailValue"]}>{post?.createdAt.toString().slice(4, 16)}</span>
           </div>
         </div>
-        <div className={styles["content"]}>{post?.body}</div>
+        <div className={styles["content"]}>{post?.desc}</div>
       </div>
     </div>
   );
