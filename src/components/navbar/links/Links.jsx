@@ -27,7 +27,6 @@ const LINKS = [
 
 const Links = ({ session }) => {
   const [open, setOpen] = useState(false);
-  console.log(session);
   const isAdmin = session?.user.isAdmin;
 
   return (
