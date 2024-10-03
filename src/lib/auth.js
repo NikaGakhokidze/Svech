@@ -10,7 +10,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         clientSecret: process.env.GITHUB_SECRET
     })],
     callbacks: {
-        async signIn({ user, account, profile }) {
+        async signIn({ account, profile }) {
             if (account.provider === "github") {
                 connectToDb()
                 try {
