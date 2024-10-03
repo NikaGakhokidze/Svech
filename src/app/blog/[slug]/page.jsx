@@ -39,7 +39,7 @@ const SinglePostPage = async ({ params }) => {
   const { slug } = params;
   const post = await getData(slug);
   // const post = await getPost(slug);
-  console.log("HEYOO");
+
   return (
     <div className={styles["container"]}>
       {post.img && (
