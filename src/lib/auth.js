@@ -1,8 +1,9 @@
 
 import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
 import { connectToDb } from "./utils"
 import { User } from "./models"
+import GitHub from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
 import { authConfig } from "./auth.config"
@@ -38,6 +39,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         clientId: process.env.GITHUB_ID,
         clientSecret: process.env.GITHUB_SECRET
     }),
+    GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        authorization: {
+            params: {
+                prompt: "consent",
+                access_type: "offline",
+                response_type: "code"
+            }
+        }
+    }),
     CredentialsProvider({
         async authorize(credentials) {
             try {
@@ -47,12 +59,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 return null;
             }
         }
-    })
+    }),
     ],
     callbacks: {
         async signIn({ account, profile }) {
             if (account.provider === "github") {
                 connectToDb()
+                console.log(profile)
                 try {
                     const user = await User.findOne({ email: profile.email })
                     if (!user) {
@@ -69,6 +82,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return false
                 }
             }
+
+
+            if (account.provider === "google") {
+                connectToDb()
+                console.log(profile)
+                try {
+                    const user = await User.findOne({ email: profile.email })
+                    if (!user) {
+                        const newUser = new User({
+                            username: profile.name,
+                            email: profile.email,
+                            image: profile.picture
+                        })
+                        await newUser.save()
+                    }
+                } catch (err) {
+                    console.log(err)
+                    return false
+                }
+            }
+
             return true
         },
         ...authConfig.callbacks
