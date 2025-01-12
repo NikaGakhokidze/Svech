@@ -8,16 +8,36 @@ import bcrypt from "bcrypt"
 
 export const addPost = async (prevState, formData) => {
 
-    const { title, desc, slug, userId } = Object.fromEntries(formData)
+    const { title, desc, img, userId } = Object.fromEntries(formData)
 
     try {
-        connectToDb()
+        await connectToDb()
+
+        // const existingPost = await Post.findOne({ $or: [{ title }, { slug }] });
+        // if (existingPost) {
+        //     return {
+        //         error: "A post with the same title or slug already exists. Please use a unique title or slug.!"
+        //     }
+        // }
+
+        const existingPost = await Post.findOne({ title })
+        if (existingPost) {
+            return {
+                error: "Post with same title exists."
+            }
+        }
+
+
+
         const newPost = new Post({
             title,
+            img,
             desc,
-            slug,
+            slug: title,
             userId
         })
+
+
 
         await newPost.save()
         console.log("saved to DB")
@@ -28,7 +48,7 @@ export const addPost = async (prevState, formData) => {
             error: "Something went wrong"
         }
     }
-    console.log(title, desc, slug, userId)
+    // console.log(title, desc, slug, userId)
 }
 
 

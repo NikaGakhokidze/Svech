@@ -14,7 +14,12 @@ const AdminUsers = async () => {
       {users.map((user) => (
         <div className={styles["user"]} key={user.id}>
           <div className={styles["detail"]}>
-            <Image src={user.img || "/noAvatar.png"} alt={user.title} width={50} height={50} />
+            <Image
+              src={user.img || "/noAvatar.png"}
+              alt={user.title ?? ""}
+              width={50}
+              height={50}
+            />
             <span className={styles["username"]}>{user.username}</span>
           </div>
 

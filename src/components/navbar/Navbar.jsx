@@ -18,7 +18,7 @@ const Navbar = async () => {
       {session ? (
         <div>
           <h3>{session.user?.name}</h3>
-          <Image src={session.user?.image} alt="User Image" width={50} height={50} />
+          <Image src={session.user?.image || "/noAvatar.png"} alt="User Image" width={50} height={50} />
         </div>
       ) : (
         <div style={{ display: "none" }}></div>
