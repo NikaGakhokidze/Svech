@@ -51,18 +51,48 @@ export const addPost = async (prevState, formData) => {
     // console.log(title, desc, slug, userId)
 }
 
+export const editPost = async (prevState, formData) => {
+    const { title, desc, img, postId } = Object.fromEntries(formData);
+    console.log(postId)
+    try {
+        await connectToDb()
 
 
+        const post = await Post.findById(postId);
+        if (!post) {
+            return {
+                error: "Post not found. Please provide a valid post ID."
+            };
+        }
 
-export const deletePost = async (formData) => {
+        post.title = title || post.title;
+        post.desc = desc || post.desc;
+        post.slug = title || post.slug;
+        post.img = img || post.img;
+
+        await post.save();
+
+        console.log("Post updated successfully");
+
+        revalidatePath("/blog")  // << this code needed to reflect changes immediatelly on blog page.
+    } catch (err) {
+        console.log(err)
+        return {
+            error: "Something went wrong"
+        }
+    }
+}
+
+
+export const deletePost = async (postId) => {
     // if we seperate client and server logic in adminPosts.jsx then we need to DIRECTLY pass ID into this function instead of destructuring from formData
-    const { id } = Object.fromEntries(formData)
+    // const { id } = Object.fromEntries(formData)
 
     try {
         connectToDb()
 
 
-        await Post.findByIdAndDelete(id)
+        await Post.findByIdAndDelete(postId)
         console.log("deleted from DB")
         revalidatePath("/blog")  // << this code needed to reflect changes immediatelly on blog page.
     } catch (err) {
