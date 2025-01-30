@@ -29,7 +29,7 @@ const PostUser = async ({ userId }) => {
       />
       <div className={styles["texts"]}>
         <span className={styles["title"]}>Author</span>
-        <span className={styles["username"]}>{user.username}</span>
+        <span className={styles["username"]}>{user?.username || "username"}</span>
       </div>
     </div>
   );

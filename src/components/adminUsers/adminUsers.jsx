@@ -20,7 +20,7 @@ const AdminUsers = async () => {
               width={50}
               height={50}
             />
-            <span className={styles["username"]}>{user.username}</span>
+            <span className={styles["username"]}>{user?.username || "username"}</span>
           </div>
 
           <form action={deleteUser}>
