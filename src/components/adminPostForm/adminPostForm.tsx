@@ -60,7 +60,7 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
           <input type="hidden" name="userId" value={userId} />
           <input type="hidden" name="postId" value={post?._id} />
 
-          <div className={styles["form-group"]}>
+          <div>
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -72,10 +72,12 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
               onChange={handleInputChange}
               onBlur={handleInputChange}
             />
-            {errors.title && <span className={styles.error}>{errors.title}</span>}
+            <div>
+              {errors.title && <span className={styles.error}>{errors.title}</span>}
+            </div>
           </div>
 
-          <div className={styles["form-group"]}>
+          <div>
             <label htmlFor="img">Image URL</label>
             <input
               type="url"
@@ -90,7 +92,7 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
             {errors.img && <span className={styles.error}>{errors.img}</span>}
           </div>
 
-          <div className={styles["form-group"]}>
+          <div>
             <label htmlFor="desc">Description</label>
             <textarea
               id="desc"
@@ -116,7 +118,7 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
           <input type="hidden" name="postId" value={post?._id} />
 
           {/* Repeat similar structure for edit form */}
-          <div className={styles["form-group"]}>
+          <div>
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -131,7 +133,7 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
             {errors.title && <span className={styles.error}>{errors.title}</span>}
           </div>
 
-          <div className={styles["form-group"]}>
+          <div>
             <label htmlFor="img">Image URL</label>
             <input
               type="url"
@@ -145,7 +147,7 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
             {errors.img && <span className={styles.error}>{errors.img}</span>}
           </div>
 
-          <div className={styles["form-group"]}>
+          <div>
             <label htmlFor="desc">Description</label>
             <textarea
               id="desc"

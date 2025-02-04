@@ -12,6 +12,7 @@
   border: none;
   border-radius: 5px;
   color: var(--textColor);
+  width: 100%;
 }
 
 .container button {
@@ -22,4 +23,8 @@
   border-radius: 5px;
   color: var(--textColor);
   font-weight: bold;
+}
+
+.error {
+  color: red;
 }
