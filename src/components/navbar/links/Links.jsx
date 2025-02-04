@@ -7,10 +7,10 @@ import { useState } from "react";
 import { handleLogout } from "@/lib/action";
 
 const LINKS = [
-  {
-    title: "Homepage",
-    path: "/",
-  },
+  // {
+  //   title: "Homepage",
+  //   path: "/",
+  // },
   {
     title: "About",
     path: "/about",
@@ -20,8 +20,8 @@ const LINKS = [
     path: "/contact",
   },
   {
-    title: "Blog",
-    path: "/blog",
+    title: "Products",
+    path: "/products",
   },
 ];
 

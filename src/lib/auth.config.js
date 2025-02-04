@@ -22,7 +22,7 @@ export const authConfig = {
         authorized({ auth, request }) {
             const user = auth?.user
             const isOnAdminPanel = request.nextUrl.pathname.startsWith('/admin')
-            const isOnBlogPage = request.nextUrl.pathname.startsWith('/blog')
+            const isOnProductsPage = request.nextUrl.pathname.startsWith('/products')
             const isOnLoginPage = request.nextUrl.pathname.startsWith('/login')
             // console.log(auth?.user)
 
@@ -33,11 +33,11 @@ export const authConfig = {
             }
 
 
-            // ONLY AUTHENTICATED USERS CAN REACH THE BLOG PAGE
+            // ONLY AUTHENTICATED USERS CAN REACH THE PRODUCTS PAGE
 
-            if (isOnBlogPage && !user) {
-                return false;
-            }
+            // if (isOnProductsPage && !user) {
+            //     return false;
+            // }
 
 
             // ONLY UNAUTHENTICATED USERS CAN REACH THE LOGIN PAGE

@@ -7,11 +7,11 @@ const LoginPage = () => {
   return (
     <div className={styles["container"]}>
       <div className={styles["wrapper"]}>
-        <form action={handleGithubLogin}>
+        {/* <form action={handleGithubLogin}>
           <button className={styles["github"]} type="submit">
             Login with GitHub
           </button>
-        </form>
+        </form> */}
         <form action={handleGoogleLogin}>
           <button className={styles["google"]} type="submit">
             Login with Google

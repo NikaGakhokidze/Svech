@@ -1,5 +1,5 @@
 import PostCard from "@/components/postCard/postCard";
-import styles from "./blog.module.css";
+import styles from "./products.module.css";
 import { getPosts } from "@/lib/data";
 
 // FETCH DATA WITH AN API
@@ -12,7 +12,7 @@ const getData = async () => {
   return res.json();
 };
 
-const BlogPage = async () => {
+const ProductsPage = async () => {
   const posts = await getData();
   // const posts = await getPosts();
 
@@ -27,4 +27,4 @@ const BlogPage = async () => {
   );
 };
 
-export default BlogPage;
+export default ProductsPage;

@@ -41,7 +41,7 @@ export const addPost = async (prevState, formData) => {
 
         await newPost.save()
         console.log("saved to DB")
-        revalidatePath("/blog")  // << this code needed to reflect changes immediatelly on blog page.
+        revalidatePath("/products")  // << this code needed to reflect changes immediatelly on products page.
     } catch (err) {
         console.log(err)
         return {
@@ -74,7 +74,7 @@ export const editPost = async (prevState, formData) => {
 
         console.log("Post updated successfully");
 
-        revalidatePath("/blog")  // << this code needed to reflect changes immediatelly on blog page.
+        revalidatePath("/products")  // << this code needed to reflect changes immediatelly on products page.
     } catch (err) {
         console.log(err)
         return {
@@ -94,7 +94,7 @@ export const deletePost = async (postId) => {
 
         await Post.findByIdAndDelete(postId)
         console.log("deleted from DB")
-        revalidatePath("/blog")  // << this code needed to reflect changes immediatelly on blog page.
+        revalidatePath("/products")  // << this code needed to reflect changes immediatelly on products page.
     } catch (err) {
         console.log(err)
         return {
@@ -120,7 +120,7 @@ export const addUser = async (prevState, formData) => {
         await newUser.save()
         console.log("saved to DB")
         revalidatePath("/admin")  // << this code needed to reflect changes immediatelly on admin page.
-        revalidatePath("/blog")  // << this code needed to reflect changes immediatelly on blog page.
+        revalidatePath("/products")  // << this code needed to reflect changes immediatelly on products page.
     } catch (err) {
         console.log(err)
         return {
@@ -154,10 +154,10 @@ export const deleteUser = async (formData) => {
 
 
 
-export const handleGithubLogin = async () => {
-    "use server";
-    await signIn("github");
-};
+// export const handleGithubLogin = async () => {
+//     "use server";
+//     await signIn("github");
+// };
 
 export const handleGoogleLogin = async () => {
     "use server";
