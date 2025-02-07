@@ -1,6 +1,6 @@
-import PostCard from "@/components/postCard/postCard";
+import ProductCard from "@/components/postCard/productCard";
 import styles from "./products.module.css";
-import { getPosts } from "@/lib/data";
+// import { getPosts } from "@/lib/data";
 
 // FETCH DATA WITH AN API
 const getData = async () => {
@@ -17,12 +17,15 @@ const ProductsPage = async () => {
   // const posts = await getPosts();
 
   return (
+    <div>
+      <h1 style={{alignSelf: "center", justifySelf: "center", marginBottom: "15px"}}>{"პროდუქცია"}</h1>
     <div className={styles["container"]}>
       {posts.map((post, _length) => (
         <div className={styles["post"]} key={_length}>
-          <PostCard post={post} />
+          <ProductCard post={post} />
         </div>
       ))}
+    </div>
     </div>
   );
 };

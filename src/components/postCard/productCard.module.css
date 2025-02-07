@@ -1,0 +1,83 @@
+/* Container becomes the card with a white background, rounded corners, and a subtle shadow */
+.container {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+  border-radius: 2px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+  height: 45vh;
+  border: 1px solid #ddd;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 1px 1px 8px 10px rgb(42, 95, 142);
+}
+
+/* Top section holds the image and the date overlay */
+.top {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Adjust as needed for your design */
+}
+
+/* Image container ensures the image covers the entire area and rounds only the top corners */
+.imgContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+/* Image zoom effect on hover */
+.imgContainer:hover .img {
+  transform: scale(1.1);
+}
+
+/* Date label styled as a small badge in the top-right corner */
+.date {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+/* Bottom section for title and price with padding */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers content */
+  text-align: center;
+  gap: 5px; /* Adds some spacing */
+}
+
+/* Title styling */
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px;
+}
+
+/* Price styling */
+.price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000000;
+}

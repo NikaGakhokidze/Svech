@@ -24,6 +24,7 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
     title?: string;
     img?: string;
     desc?: string;
+    price?: string;
   }>({});
 
   // Validate individual fields
@@ -35,6 +36,9 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
         return '';
       case 'img':
         if (!value) return 'Image URL is required';
+        return '';
+      case 'price':
+        if (!value) return 'Price is required';
         return '';
       case 'desc':
         if (!value) return 'Description is required';
@@ -93,6 +97,20 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
           </div>
 
           <div>
+            <label htmlFor="price">Price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder={post?.price}
+              required
+              onChange={handleInputChange}
+              onBlur={handleInputChange}
+            />
+            {errors.price && <span className={styles.error}>{errors.price}</span>}
+          </div>
+
+          <div>
             <label htmlFor="desc">Description</label>
             <textarea
               id="desc"
@@ -125,10 +143,9 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
               id="title"
               name="title"
               placeholder={post?.title}
-              required
               minLength={5}
-              onChange={handleInputChange}
-              onBlur={handleInputChange}
+            // onChange={handleInputChange}
+            // onBlur={handleInputChange}
             />
             {errors.title && <span className={styles.error}>{errors.title}</span>}
           </div>
@@ -140,11 +157,22 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
               id="img"
               name="img"
               placeholder={post?.img}
-              required
-              onChange={handleInputChange}
-              onBlur={handleInputChange}
+            // onChange={handleInputChange}
+            // onBlur={handleInputChange}
             />
             {errors.img && <span className={styles.error}>{errors.img}</span>}
+          </div>
+          <div>
+            <label htmlFor="price">Price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder={post?.price}
+            // onChange={handleInputChange}
+            // onBlur={handleInputChange}
+            />
+            {errors.price && <span className={styles.error}>{errors.price}</span>}
           </div>
 
           <div>
@@ -153,11 +181,10 @@ const AdminPostForm = ({ userId, post }: IAdminPostForm) => {
               id="desc"
               name="desc"
               placeholder={post?.desc}
-              required
               minLength={5}
               rows={10}
-              onChange={handleInputChange}
-              onBlur={handleInputChange}
+            // onChange={handleInputChange}
+            // onBlur={handleInputChange}
             />
             {errors.desc && <span className={styles.error}>{errors.desc}</span>}
           </div>

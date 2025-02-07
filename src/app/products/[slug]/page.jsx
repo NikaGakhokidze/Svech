@@ -1,18 +1,18 @@
 import Image from "next/image";
-import styles from "./singlePost.module.css";
+import styles from "./singleProduct.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
 import { getPost } from "@/lib/data";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 //FETCH DATA WITH AN API
-const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
-  if (!res.ok) {
-    throw new Error("Something went wrong");
-  }
+// const getData = async (slug) => {
+//   const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+//   if (!res.ok) {
+//     throw new Error("Something went wrong");
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 
 // DELETE SINGLE POST WITH AN API
 // const deleteData = async (slug) => {
@@ -24,31 +24,30 @@ const getData = async (slug) => {
 //   return res.json();
 // };
 
-export const generateMetadata = async ({ params }) => {
-  const { slug } = params;
+// export const generateMetadata = async ({ params }) => {
+//   const { slug } = params;
 
-  const post = await getPost(slug);
+//   const post = await getPost(slug);
 
-  return {
-    title: post.title,
-    description: post.desc,
-  };
-};
+//   return {
+//     title: post.title,
+//     description: post.desc,
+//   };
+// };
 
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
-  const post = await getData(slug);
-  // const post = await getPost(slug);
+  const post = await getPost(slug);
   console.log(post)
   return (
     <div className={styles["container"]}>
-      {post.img && (
+      {post?.img && (
         <div className={styles["imgContainer"]}>
           <Image
             className={styles["img"]}
             fill
             alt=""
-            src={post.img}
+            src={post?.img}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>

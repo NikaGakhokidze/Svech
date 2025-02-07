@@ -5,11 +5,12 @@ import { Post, User } from "./models"
 import { connectToDb } from "./utils"
 import { signIn, signOut } from "./auth"
 import bcrypt from "bcrypt"
+import slugify from 'slugify';
 
 export const addPost = async (prevState, formData) => {
 
-    const { title, desc, img, userId } = Object.fromEntries(formData)
-
+    const { title, desc, img, userId, price } = Object.fromEntries(formData)
+    console.log(price)
     try {
         await connectToDb()
 
@@ -26,15 +27,17 @@ export const addPost = async (prevState, formData) => {
                 error: "Post with same title exists."
             }
         }
-
+        const slug = slugify(title, { lower: true, strict: true });
 
 
         const newPost = new Post({
             title,
             img,
             desc,
-            slug: title,
-            userId
+            slug: slug,
+            price,
+            userId,
+
         })
 
 
@@ -52,7 +55,7 @@ export const addPost = async (prevState, formData) => {
 }
 
 export const editPost = async (prevState, formData) => {
-    const { title, desc, img, postId } = Object.fromEntries(formData);
+    const { title, desc, img, postId, price } = Object.fromEntries(formData);
     console.log(postId)
     try {
         await connectToDb()
@@ -69,6 +72,7 @@ export const editPost = async (prevState, formData) => {
         post.desc = desc || post.desc;
         post.slug = title || post.slug;
         post.img = img || post.img;
+        post.price = price || post.price;
 
         await post.save();
 

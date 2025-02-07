@@ -1,6 +1,7 @@
 "use client";
 
 import { deletePost } from "@/lib/action";
+import styles from "./adminPosts.module.css"
 
 const DeletePostButton = ({ postId }) => {
   const handleDelete = async (e) => {
@@ -14,7 +15,7 @@ const DeletePostButton = ({ postId }) => {
   };
 
   return (
-    <button onClick={handleDelete} type="button">
+    <button onClick={handleDelete} type="button" className={styles["deleteButton"]}>
       Delete
     </button>
   );

@@ -50,6 +50,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    price: {
+        type: String,
+        required: true,
+    }
 }, { timestamps: true });
 
 export const User = mongoose.models?.User || mongoose.model("User", userSchema);

@@ -1,13 +1,14 @@
 import Image from "next/image";
-import styles from "./postCard.module.css";
+import styles from "./productCard.module.css";
 import Link from "next/link";
 
-const PostCard = ({ post }) => {
+const ProductCard = ({ post }) => {
   return (
     <div className={styles["container"]}>
       <div className={styles["top"]}>
         {post.img && (
           <div className={styles["imgContainer"]}>
+            <Link href={`/products/${post.slug}`}>
             <Image
               src={post?.img}
               alt=""
@@ -15,19 +16,19 @@ const PostCard = ({ post }) => {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
+            </Link>
           </div>
         )}
         <span className={styles["date"]}>19.02.2024</span>
       </div>
       <div className={styles["bottom"]}>
-        <h1 className={styles["title"]}>{post.title}</h1>
-        <p className={styles["desc"]}>{post.body}</p>
-        <Link className={styles["link"]} href={`/products/${post.slug}`}>
-          Read more
-        </Link>
+        <h3 className={styles["title"]}>{post.title}</h3>
+        <h2 className={styles["price"]}>
+          {`${post?.price || 0}₾`}
+        </h2>
       </div>
     </div>
   );
 };
 
-export default PostCard;
+export default ProductCard;

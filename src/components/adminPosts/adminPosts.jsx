@@ -18,7 +18,7 @@ const AdminPosts = async () => {
       {posts.map((post) => {
        return <div className={styles["post"]} key={post.id}>
           <div className={styles["detail"]}>
-            <Image src={post.img || "/noAvatar.png"} alt={post.title} width={50} height={50} />
+            <Image src={post.img || "/noAvatar.png"} alt={post.title} width={80} height={80} />
             <span className={styles["postTitle"]}>{post.title}</span>
           </div>
 

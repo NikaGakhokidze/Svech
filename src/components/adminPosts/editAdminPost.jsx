@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useFormStatus } from "react-dom";
+import styles from "./adminPosts.module.css"
 
 const EditPostButton = ({ slug }) => {
   const { pending } = useFormStatus()
@@ -17,7 +18,7 @@ const EditPostButton = ({ slug }) => {
   };
 
   return (
-    <button disabled={pending} onClick={handleEdit} type="button">
+    <button disabled={pending} onClick={handleEdit} type="button" className={styles["editButton"]}>
       Edit
     </button>
   );
